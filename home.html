@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>second week homework</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script
+      src="https://unpkg.com/react/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone@7.22.10/babel.min.js"
+      crossorigin
+    ></script>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      #root {
+        display: flex;
+        justify-content: center;
+      }
+      ol {
+        max-width: 60%;
+      }
+      li {
+        padding: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>second week homework</h1>
+    <div id="root"></div>
+    <script type="text/babel">
+      "use strict";
+      function PhotoList({ list }) {
+        return (
+          <>
+            <ol>
+              {list.map(({ name, id, link }) => (
+                <li key={id}>
+                  <a href={link}>{name}</a>
+                </li>
+              ))}
+            </ol>
+          </>
+        );
+      }
+
+      $.getJSON("/data.json", function (dataFromJSON) {
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<PhotoList list={dataFromJSON} />);
+      });
+    </script>
+  </body>
+</html>
